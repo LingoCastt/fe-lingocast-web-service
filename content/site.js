@@ -23,9 +23,9 @@ export const APP = {
 // Ảnh chụp màn hình điện thoại — copy file vào public/screenshots/
 // (xem public/screenshots/README.md). Chú thích nằm ở i18n.js.
 export const SCREENSHOTS = [
-  "/screenshots/01.png",
-  "/screenshots/02.png",
-  "/screenshots/03.png",
+  "/screenshots/01.jpg",
+  "/screenshots/02.jpg",
+  "/screenshots/03.jpg",
 ];
 
 // Ảnh minh hoạ từng trang — copy file vào public/images/<trang>/

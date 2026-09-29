@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SCREENSHOTS } from "@/content/site";
 import { useT } from "./lang";
 
 /** Phone bezel. Renders the shot, or a drop-file hint while the file is absent. */
-function PhoneFrame({ src, title, caption, index, onOpen }) {
+function PhoneFrame({ src, title, caption, index, active, onOpen }) {
   const [failed, setFailed] = useState(false);
   const t = useT();
 
   return (
-    <figure className="flex flex-col gap-space-sm group">
-      <div className="relative mx-auto w-full max-w-[280px]">
-        {/* device shell */}
-        <div className="relative rounded-[2rem] bg-surface-container-high p-2 shadow-2xl ring-1 ring-outline-variant/40 transition-transform duration-500 group-hover:-translate-y-1">
+    <figure
+      data-index={index}
+      className="group flex w-[78vw] max-w-[280px] shrink-0 snap-center flex-col gap-space-sm sm:w-[280px]"
+    >
+      <div
+        className={
+          "relative mx-auto w-full transition-all duration-500 ease-out " +
+          (active ? "scale-100 opacity-100" : "scale-[0.88] opacity-40")
+        }
+      >
+        <div className="relative rounded-[2rem] bg-surface-container-high p-2 shadow-2xl ring-1 ring-outline-variant/40">
           <div className="absolute left-1/2 top-3 z-20 h-1.5 w-16 -translate-x-1/2 rounded-full bg-surface-container-lowest" />
           <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[1.6rem] bg-surface-container-lowest">
             {failed ? (
@@ -39,6 +46,7 @@ function PhoneFrame({ src, title, caption, index, onOpen }) {
                 onClick={() => onOpen(index)}
                 className="block h-full w-full cursor-zoom-in"
                 aria-label={`${t.gallery.zoom}: ${title}`}
+                tabIndex={active ? 0 : -1}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -57,7 +65,12 @@ function PhoneFrame({ src, title, caption, index, onOpen }) {
         </span>
       </div>
 
-      <figcaption className="space-y-1 px-1 text-center">
+      <figcaption
+        className={
+          "space-y-1 px-1 text-center transition-opacity duration-500 " +
+          (active ? "opacity-100" : "opacity-0")
+        }
+      >
         <div className="font-code-telemetry text-code-telemetry font-semibold text-primary">
           {title}
         </div>
@@ -70,26 +83,99 @@ function PhoneFrame({ src, title, caption, index, onOpen }) {
 export default function ScreenshotGallery() {
   const t = useT();
   const [open, setOpen] = useState(null);
+  const [active, setActive] = useState(0);
+  const trackRef = useRef(null);
+
   const shot =
     open === null ? null : { src: SCREENSHOTS[open], caption: t.screenshots[open] };
 
   const step = (delta) =>
     setOpen((i) => (i + delta + SCREENSHOTS.length) % SCREENSHOTS.length);
 
+  // Track which card is centred in the scroller, so it can scale up and the
+  // matching dot can light up — the carousel's "current page" state.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cards = [...track.children];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(Number(visible.target.dataset.index));
+      },
+      { root: track, threshold: [0.6, 0.9] },
+    );
+    cards.forEach((c) => observer.observe(c));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToIndex = useCallback((i) => {
+    const track = trackRef.current;
+    const card = track?.children[i];
+    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, []);
+
   return (
     <>
-      <div className="grid grid-cols-1 gap-space-lg sm:grid-cols-2 lg:grid-cols-3">
-        {SCREENSHOTS.map((src, i) => (
-          <PhoneFrame
-            key={src}
-            src={src}
-            title={t.screenshots[i][0]}
-            caption={t.screenshots[i][1]}
-            index={i}
-            onOpen={setOpen}
-          />
-        ))}
+      <div className="relative">
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-space-lg overflow-x-auto scroll-smooth px-[11vw] py-space-sm sm:px-[calc(50%-140px)]"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {SCREENSHOTS.map((src, i) => (
+            <PhoneFrame
+              key={src}
+              src={src}
+              title={t.screenshots[i][0]}
+              caption={t.screenshots[i][1]}
+              index={i}
+              active={i === active}
+              onOpen={setOpen}
+            />
+          ))}
+        </div>
+
+        {SCREENSHOTS.length > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label={t.gallery.prev}
+              onClick={() => scrollToIndex((active - 1 + SCREENSHOTS.length) % SCREENSHOTS.length)}
+              className="absolute left-0 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-surface-container-high/90 p-2 text-primary shadow-lg backdrop-blur transition-all hover:bg-surface-bright sm:flex"
+            >
+              <span className="material-symbols-outlined text-[22px]">chevron_left</span>
+            </button>
+            <button
+              type="button"
+              aria-label={t.gallery.next}
+              onClick={() => scrollToIndex((active + 1) % SCREENSHOTS.length)}
+              className="absolute right-0 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-surface-container-high/90 p-2 text-primary shadow-lg backdrop-blur transition-all hover:bg-surface-bright sm:flex"
+            >
+              <span className="material-symbols-outlined text-[22px]">chevron_right</span>
+            </button>
+          </>
+        )}
       </div>
+
+      {SCREENSHOTS.length > 1 && (
+        <div className="mt-space-md flex items-center justify-center gap-2">
+          {SCREENSHOTS.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              aria-label={`${i + 1}`}
+              onClick={() => scrollToIndex(i)}
+              className={
+                "h-1.5 rounded-full transition-all duration-300 " +
+                (i === active ? "w-6 bg-secondary" : "w-1.5 bg-outline-variant hover:bg-outline")
+              }
+            />
+          ))}
+        </div>
+      )}
 
       {shot && (
         <div
@@ -139,9 +225,11 @@ export default function ScreenshotGallery() {
             />
             <figcaption className="max-w-md text-center">
               <div className="font-code-telemetry text-code-telemetry font-semibold text-primary">
-                {shot.title}
+                {shot.caption[0]}
               </div>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">{caption}</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">
+                {shot.caption[1]}
+              </p>
             </figcaption>
           </figure>
         </div>

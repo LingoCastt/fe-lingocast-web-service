@@ -35,7 +35,7 @@ Nút `VI` / `EN` trên header, lựa chọn được ghi nhớ trong `localStora
 
 | Thư mục | Dùng cho |
 |---------|----------|
-| `public/screenshots/` | Ảnh chụp màn hình điện thoại (`01.png`, `02.png`, `03.png`) |
+| `public/screenshots/` | Ảnh chụp màn hình điện thoại (`01.jpg`, `02.jpg`, `03.jpg`) |
 | `public/images/lab/` | Ảnh lớn đầu trang `/lab` |
 | `public/images/about/` | Ảnh lớn đầu trang `/about` |
 | `public/images/blog/` | Ảnh bài nổi bật trang `/blog` |
