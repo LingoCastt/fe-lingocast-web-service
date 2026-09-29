@@ -7,65 +7,16 @@ import ScreenshotGallery from "@/components/ScreenshotGallery";
 import { useT } from "@/components/lang";
 import { OWNER, APP } from "@/content/site";
 
-const DICT = {
-  vi: {
-    "badge-top": `• XỬ LÝ TRÊN THIẾT BỊ • 1 NGƯỜI • KHÔNG QUẢNG CÁO`,
-    "hero-title": "Podcast bản ngữ, hiểu được từng câu.",
-    "hero-desc": APP.description,
-    "cta-primary": "Xem ảnh demo",
-    "cta-secondary": "Tính năng",
-    "stat-offline": "Nghe ngoại tuyến",
-    "shots-sub": "ẢNH CHỤP MÀN HÌNH // THIẾT BỊ THẬT",
-    "shots-title": "LingoCast trên điện thoại.",
-    "shots-desc":
-      "Ba màn hình chính, chụp trực tiếp từ máy — trình nghe kèm transcript, sổ từ, và thư viện ngoại tuyến.",
-    "features-sub": "TÍNH NĂNG // CÁCH HOẠT ĐỘNG",
-    "features-title": "Sáu thứ làm nên việc học.",
-    "bench-sub": "HỒ SƠ THỰC THI",
-    "bench-title": "Nhanh ngay trên máy.",
-    "bench-desc":
-      "Nhận dạng giọng nói và căn chỉnh transcript chạy trên chính con chip của điện thoại. Không vòng lặp lên máy chủ, nên không có độ trễ mạng.",
-    "manifesto-quote":
-      "“Bản ghi âm giọng nói của bạn không rời khỏi máy. Không tài khoản, không SDK phân tích, không hồ sơ quảng cáo — ứng dụng học ngôn ngữ không cần biết bạn là ai.”",
-  },
-  en: {
-    "badge-top": "• ON-DEVICE PROCESSING • 1 PERSON • ZERO ADS",
-    "hero-title": "Native podcasts, understood sentence by sentence.",
-    "hero-desc":
-      "Listen to native-speaker podcasts with a transcript that follows every sentence. Tap any word for an instant definition, save it, and review it with spaced repetition. Speech recognition and transcript alignment run on-device — no audio leaves your phone.",
-    "cta-primary": "See the screenshots",
-    "cta-secondary": "Features",
-    "stat-offline": "Offline listening",
-    "shots-sub": "SCREENSHOTS // REAL DEVICE",
-    "shots-title": "LingoCast on the phone.",
-    "shots-desc":
-      "The three main screens, captured straight off the device — player with transcript, vocabulary book, and the offline library.",
-    "features-sub": "FEATURES // HOW IT WORKS",
-    "features-title": "Six things that make it stick.",
-    "bench-sub": "EXECUTION PROFILES",
-    "bench-title": "Fast, right on the device.",
-    "bench-desc":
-      "Speech recognition and transcript alignment run on the phone's own silicon. No server roundtrip, so no network latency.",
-    "manifesto-quote":
-      "“Your voice recordings never leave the device. No account, no analytics SDK, no ad profile — a language app has no business knowing who you are.”",
-  },
-};
-
-const ORBIT = [
-  { name: "TRANSCRIPT", icon: "subtitles", accent: true, pos: "top-6 left-1/2 -translate-x-1/2" },
-  { name: "TRA TỪ", icon: "translate", accent: false, pos: "right-4 top-1/2 -translate-y-1/2" },
-  { name: "SỔ TỪ", icon: "style", accent: true, pos: "bottom-6 left-1/2 -translate-x-1/2" },
-  { name: "TỐC ĐỘ", icon: "speed", accent: false, pos: "left-4 top-1/2 -translate-y-1/2" },
-];
-
-const BENCHMARKS = [
-  ["Nhận dạng giọng nói", "Whisper lượng tử hoá, chạy trên NPU", "310 ms", "MỖI 30s AUDIO"],
-  ["Căn chỉnh câu", "Dynamic time warping trên sóng âm", "62 ms", "SAI SỐ TRUNG BÌNH"],
-  ["Tra từ trong từ điển", "Chỉ mục SQLite dựng sẵn, offline", "18 ms", "P99 LATENCY"],
+const ORBIT_ICONS = ["subtitles", "translate", "style", "speed"];
+const ORBIT_POS = [
+  "top-6 left-1/2 -translate-x-1/2",
+  "right-4 top-1/2 -translate-y-1/2",
+  "bottom-6 left-1/2 -translate-x-1/2",
+  "left-4 top-1/2 -translate-y-1/2",
 ];
 
 export default function HomePage() {
-  const t = useT(DICT);
+  const t = useT();
 
   return (
     <>
@@ -78,7 +29,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-space-sm mb-space-lg">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-secondary font-code-param text-code-param">
               <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-ping" />
-              <span className="tracking-widest uppercase">{t("badge-top")}</span>
+              <span className="tracking-widest uppercase">{t.home.badge}</span>
             </div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-code-param text-code-param">
               <span className="material-symbols-outlined text-[14px] text-secondary">mic</span>
@@ -89,18 +40,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
             <div className="lg:col-span-7 flex flex-col gap-space-lg">
               <h1 className="font-display-hero text-display-hero-mobile lg:text-display-hero tracking-tight text-primary text-balance">
-                {t("hero-title")}
+                {t.home.heroTitle}
               </h1>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl text-balance">
-                {t("hero-desc")}
+                {t.app.description}
               </p>
 
               <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
                 <a
                   href="#screenshots"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all shadow-[0_0_24px_rgba(255,255,255,0.2)] group"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all glow-primary group"
                 >
-                  <span>{t("cta-primary")}</span>
+                  <span>{t.home.ctaPrimary}</span>
                   <span className="material-symbols-outlined ml-2 text-[18px] group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
@@ -109,7 +60,7 @@ export default function HomePage() {
                   href="#features"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-surface-container-high text-primary font-code-telemetry text-code-telemetry font-medium hover:bg-surface-container-highest transition-all group"
                 >
-                  <span>{t("cta-secondary")}</span>
+                  <span>{t.home.ctaSecondary}</span>
                   <span className="material-symbols-outlined ml-2 text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">
                     east
                   </span>
@@ -117,7 +68,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant font-code-param text-code-param">
                   <span className="w-2 h-2 rounded-full bg-secondary" />
                   <span className="text-primary font-semibold">100%</span>
-                  <span>{t("stat-offline")}</span>
+                  <span>{t.home.statOffline}</span>
                 </div>
               </div>
 
@@ -149,13 +100,13 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                {ORBIT.map(({ name, icon, accent, pos }) => (
-                  <div key={name} className={`absolute z-20 group cursor-default ${pos}`}>
+                {t.home.orbit.map((name, i) => (
+                  <div key={name} className={`absolute z-20 group cursor-default ${ORBIT_POS[i]}`}>
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary shadow-lg hover:scale-105 transition-transform">
                       <span
-                        className={`material-symbols-outlined text-[14px] ${accent ? "text-secondary" : "text-primary"}`}
+                        className={`material-symbols-outlined text-[14px] ${i % 2 === 0 ? "text-secondary" : "text-primary"}`}
                       >
-                        {icon}
+                        {ORBIT_ICONS[i]}
                       </span>
                       <span className="font-code-param text-code-param font-bold">{name}</span>
                     </div>
@@ -164,13 +115,13 @@ export default function HomePage() {
                 <div className="absolute top-16 right-12 z-20 group cursor-default">
                   <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-secondary shadow-lg hover:scale-105 transition-transform">
                     <span className="material-symbols-outlined text-[12px]">cloud_off</span>
-                    <span className="font-code-param text-[9px] font-bold">OFFLINE</span>
+                    <span className="font-code-param text-[9px] font-bold">{t.home.orbitOffline}</span>
                   </div>
                 </div>
 
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between font-code-param text-code-param text-on-surface-variant">
-                  <span>ALIGN_RATE: 60 HZ</span>
-                  <span className="text-secondary">ON_DEVICE_OK</span>
+                  <span>{t.home.radarRate}</span>
+                  <span className="text-secondary">{t.home.radarOk}</span>
                 </div>
               </div>
             </div>
@@ -184,12 +135,12 @@ export default function HomePage() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary" />
             <span className="text-primary font-medium">{APP.name.toUpperCase()}:</span>
-            <span>{APP.audit.distribution}</span>
+            <span>{t.app.status}</span>
           </div>
           <div className="flex items-center gap-4">
-            {APP.metrics.map(([label, value]) => (
+            {t.app.metricLabels.map((label, i) => (
               <span key={label}>
-                {label}: <span className="text-primary font-semibold">{value}</span>
+                {label}: <span className="text-primary font-semibold">{APP.metrics[i]}</span>
               </span>
             ))}
           </div>
@@ -202,20 +153,20 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
             <div className="max-w-2xl">
               <div className="font-code-param text-code-param text-secondary uppercase tracking-widest mb-1">
-                {t("shots-sub")}
+                {t.home.shotsSub}
               </div>
               <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-primary tracking-tight">
-                {t("shots-title")}
+                {t.home.shotsTitle}
               </h2>
               <p className="font-body-md text-body-md text-on-surface-variant mt-2">
-                {t("shots-desc")}
+                {t.home.shotsDesc}
               </p>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low font-code-param text-code-param text-on-surface-variant shrink-0">
               <span className="material-symbols-outlined text-secondary text-[16px]">
                 phone_iphone
               </span>
-              <span>CHỤP TỪ THIẾT BỊ THẬT</span>
+              <span>{t.home.shotsBadge}</span>
             </div>
           </div>
 
@@ -231,21 +182,23 @@ export default function HomePage() {
         <div className="max-w-[1280px] mx-auto flex flex-col gap-space-lg">
           <div>
             <div className="font-code-param text-code-param text-secondary uppercase tracking-widest mb-1">
-              {t("features-sub")}
+              {t.home.featuresSub}
             </div>
             <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-primary tracking-tight">
-              {t("features-title")}
+              {t.home.featuresTitle}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            {APP.features.map(([icon, title, body]) => (
+            {t.app.features.map(([title, body], i) => (
               <div
                 key={title}
                 className="flex flex-col gap-space-sm p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group"
               >
                 <div className="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-                  <span className="material-symbols-outlined text-[26px]">{icon}</span>
+                  <span className="material-symbols-outlined text-[26px]">
+                    {APP.featureIcons[i]}
+                  </span>
                 </div>
                 <h3 className="font-headline-md text-headline-md text-primary font-semibold">
                   {title}
@@ -260,7 +213,7 @@ export default function HomePage() {
               href="/apps"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-container-low text-primary hover:bg-surface-container font-code-telemetry text-code-telemetry transition-all group"
             >
-              <span>Thông số kỹ thuật đầy đủ</span>
+              <span>{t.home.fullSpecs}</span>
               <span className="material-symbols-outlined text-[18px] text-secondary group-hover:translate-x-1 transition-transform">
                 east
               </span>
@@ -277,11 +230,11 @@ export default function HomePage() {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="font-label-caps text-label-caps text-primary tracking-widest uppercase">
-                  SÓNG ÂM GIỌNG NÓI // FFT_STREAM
+                  {t.home.specTitle}
                 </span>
               </div>
               <span className="font-code-param text-code-param text-on-surface-variant">
-                SAMPLE_RATE: 48000 Hz
+                {t.home.specRate}
               </span>
             </div>
             <div className="relative w-full h-56 rounded-xl bg-surface-dim overflow-hidden shadow-inner p-3 flex flex-col justify-end">
@@ -294,29 +247,28 @@ export default function HomePage() {
                 <span>16 kHz</span>
               </div>
               <div className="absolute bottom-2 right-4 font-code-param text-code-param text-secondary">
-                FORMANT: 432.09 Hz [-12.4 dBFS]
+                {t.home.specFormant}
               </div>
             </div>
             <p className="font-code-param text-code-param text-on-surface-variant">
-              Dựng trực tiếp trên luồng đồ hoạ của trình duyệt bằng Canvas2D. Không gửi dữ liệu
-              audio đi đâu cả.
+              {t.home.specNote}
             </p>
           </div>
 
           <div className="lg:col-span-5 flex flex-col gap-space-md">
             <div>
               <span className="font-code-param text-code-param text-secondary uppercase tracking-widest">
-                {t("bench-sub")}
+                {t.home.benchSub}
               </span>
               <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-primary tracking-tight">
-                {t("bench-title")}
+                {t.home.benchTitle}
               </h2>
               <p className="font-body-md text-body-md text-on-surface-variant mt-2">
-                {t("bench-desc")}
+                {t.home.benchDesc}
               </p>
             </div>
             <div className="flex flex-col gap-space-sm">
-              {BENCHMARKS.map(([title, sub, value, unit]) => (
+              {t.home.benchmarks.map(([title, sub, value, unit]) => (
                 <div
                   key={title}
                   className="p-3.5 rounded-lg bg-surface-container flex items-center justify-between"
@@ -353,11 +305,11 @@ export default function HomePage() {
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-secondary" />
                 <span className="font-code-param text-code-param text-secondary uppercase tracking-widest">
-                  NGUYÊN TẮC // RIÊNG TƯ TRƯỚC HẾT
+                  {t.home.manifestoLabel}
                 </span>
               </div>
               <blockquote className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-primary tracking-tight font-medium">
-                {t("manifesto-quote")}
+                {t.home.manifestoQuote}
               </blockquote>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm">
                 <div className="flex items-center gap-3">
@@ -369,16 +321,16 @@ export default function HomePage() {
                       {OWNER.name}
                     </div>
                     <div className="font-code-param text-code-param text-on-surface-variant">
-                      {OWNER.role}
+                      {t.home.ownerRole}
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 font-code-param text-code-param text-on-surface-variant">
-                  <span>KHÔNG TRACKER</span>
+                  <span>{t.home.pledges[0]}</span>
                   <span>•</span>
-                  <span>KHÔNG TÀI KHOẢN</span>
+                  <span>{t.home.pledges[1]}</span>
                   <span>•</span>
-                  <span className="text-secondary">XỬ LÝ TẠI MÁY</span>
+                  <span className="text-secondary">{t.home.pledges[2]}</span>
                 </div>
               </div>
             </div>

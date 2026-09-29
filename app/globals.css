@@ -1,55 +1,164 @@
 @import "tailwindcss";
 
+/* ---------- Light (default) ---------- */
+:root {
+  --c-surface: #fbf9f9;
+  --c-surface-dim: #dbd9d8;
+  --c-surface-bright: #fbf9f9;
+  --c-surface-container-lowest: #ffffff;
+  --c-surface-container-low: #f5f3f2;
+  --c-surface-container: #efedec;
+  --c-surface-container-high: #e9e7e6;
+  --c-surface-container-highest: #e3e2e1;
+  --c-surface-variant: #e1e3e3;
+  --c-on-surface: #1c1b1b;
+  --c-on-surface-variant: #444748;
+  --c-inverse-surface: #313030;
+  --c-inverse-on-surface: #f3f0f0;
+  --c-outline: #747878;
+  --c-outline-variant: #c4c7c8;
+  --c-surface-tint: #5d5f5f;
+  --c-primary: #1a1c1c;
+  --c-on-primary: #ffffff;
+  --c-primary-container: #e2e2e2;
+  --c-on-primary-container: #1a1c1c;
+  --c-inverse-primary: #c6c6c7;
+  --c-primary-fixed: #e2e2e2;
+  --c-primary-fixed-dim: #3a3c3c;
+  --c-on-primary-fixed: #1a1c1c;
+  --c-on-primary-fixed-variant: #454747;
+  --c-secondary: #006d34;
+  --c-on-secondary: #ffffff;
+  --c-secondary-container: #9df6b4;
+  --c-on-secondary-container: #002110;
+  --c-secondary-fixed: #9df6b4;
+  --c-secondary-fixed-dim: #82d99a;
+  --c-on-secondary-fixed: #002109;
+  --c-on-secondary-fixed-variant: #005321;
+  --c-tertiary: #1a1b22;
+  --c-on-tertiary: #ffffff;
+  --c-tertiary-container: #e3e1ec;
+  --c-on-tertiary-container: #1a1b22;
+  --c-tertiary-fixed: #e3e1ec;
+  --c-tertiary-fixed-dim: #c6c5cf;
+  --c-on-tertiary-fixed: #1a1b22;
+  --c-on-tertiary-fixed-variant: #46464e;
+  --c-error: #ba1a1a;
+  --c-on-error: #ffffff;
+  --c-error-container: #ffdad6;
+  --c-on-error-container: #410002;
+
+  --glow-primary: 0 0 24px rgba(0, 0, 0, 0.16);
+  --viz-bar: rgba(0, 0, 0, 0.28);
+  color-scheme: light;
+}
+
+/* ---------- Dark (tokens from docs/.../obsidian_telemetry/DESIGN.md) ---------- */
+.dark {
+  --c-surface: #131313;
+  --c-surface-dim: #131313;
+  --c-surface-bright: #3a3939;
+  --c-surface-container-lowest: #0e0e0e;
+  --c-surface-container-low: #1c1b1b;
+  --c-surface-container: #201f1f;
+  --c-surface-container-high: #2a2a2a;
+  --c-surface-container-highest: #353534;
+  --c-surface-variant: #353534;
+  --c-on-surface: #e5e2e1;
+  --c-on-surface-variant: #c4c7c8;
+  --c-inverse-surface: #e5e2e1;
+  --c-inverse-on-surface: #313030;
+  --c-outline: #8e9192;
+  --c-outline-variant: #444748;
+  --c-surface-tint: #c6c6c7;
+  --c-primary: #ffffff;
+  --c-on-primary: #2f3131;
+  --c-primary-container: #e2e2e2;
+  --c-on-primary-container: #636565;
+  --c-inverse-primary: #5d5f5f;
+  --c-primary-fixed: #e2e2e2;
+  --c-primary-fixed-dim: #c6c6c7;
+  --c-on-primary-fixed: #1a1c1c;
+  --c-on-primary-fixed-variant: #454747;
+  --c-secondary: #4ae176;
+  --c-on-secondary: #003915;
+  --c-secondary-container: #00b954;
+  --c-on-secondary-container: #004119;
+  --c-secondary-fixed: #6bff8f;
+  --c-secondary-fixed-dim: #4ae176;
+  --c-on-secondary-fixed: #002109;
+  --c-on-secondary-fixed-variant: #005321;
+  --c-tertiary: #ffffff;
+  --c-on-tertiary: #2f3038;
+  --c-tertiary-container: #e3e1ec;
+  --c-on-tertiary-container: #63646c;
+  --c-tertiary-fixed: #e3e1ec;
+  --c-tertiary-fixed-dim: #c6c5cf;
+  --c-on-tertiary-fixed: #1a1b22;
+  --c-on-tertiary-fixed-variant: #46464e;
+  --c-error: #ffb4ab;
+  --c-on-error: #690005;
+  --c-error-container: #93000a;
+  --c-on-error-container: #ffdad6;
+
+  --glow-primary: 0 0 24px rgba(255, 255, 255, 0.2);
+  --viz-bar: rgba(255, 255, 255, 0.22);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-surface: var(--c-surface);
+  --color-surface-dim: var(--c-surface-dim);
+  --color-surface-bright: var(--c-surface-bright);
+  --color-surface-container-lowest: var(--c-surface-container-lowest);
+  --color-surface-container-low: var(--c-surface-container-low);
+  --color-surface-container: var(--c-surface-container);
+  --color-surface-container-high: var(--c-surface-container-high);
+  --color-surface-container-highest: var(--c-surface-container-highest);
+  --color-surface-variant: var(--c-surface-variant);
+  --color-on-surface: var(--c-on-surface);
+  --color-on-surface-variant: var(--c-on-surface-variant);
+  --color-inverse-surface: var(--c-inverse-surface);
+  --color-inverse-on-surface: var(--c-inverse-on-surface);
+  --color-outline: var(--c-outline);
+  --color-outline-variant: var(--c-outline-variant);
+  --color-surface-tint: var(--c-surface-tint);
+  --color-primary: var(--c-primary);
+  --color-on-primary: var(--c-on-primary);
+  --color-primary-container: var(--c-primary-container);
+  --color-on-primary-container: var(--c-on-primary-container);
+  --color-inverse-primary: var(--c-inverse-primary);
+  --color-primary-fixed: var(--c-primary-fixed);
+  --color-primary-fixed-dim: var(--c-primary-fixed-dim);
+  --color-on-primary-fixed: var(--c-on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--c-on-primary-fixed-variant);
+  --color-secondary: var(--c-secondary);
+  --color-on-secondary: var(--c-on-secondary);
+  --color-secondary-container: var(--c-secondary-container);
+  --color-on-secondary-container: var(--c-on-secondary-container);
+  --color-secondary-fixed: var(--c-secondary-fixed);
+  --color-secondary-fixed-dim: var(--c-secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--c-on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--c-on-secondary-fixed-variant);
+  --color-tertiary: var(--c-tertiary);
+  --color-on-tertiary: var(--c-on-tertiary);
+  --color-tertiary-container: var(--c-tertiary-container);
+  --color-on-tertiary-container: var(--c-on-tertiary-container);
+  --color-tertiary-fixed: var(--c-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--c-tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--c-on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--c-on-tertiary-fixed-variant);
+  --color-error: var(--c-error);
+  --color-on-error: var(--c-on-error);
+  --color-error-container: var(--c-error-container);
+  --color-on-error-container: var(--c-on-error-container);
+  --color-background: var(--c-surface);
+  --color-on-background: var(--c-on-surface);
+}
+
+
 /* Obsidian Telemetry — tokens lifted verbatim from docs/.../obsidian_telemetry/DESIGN.md */
 @theme {
-  --color-surface: #131313;
-  --color-surface-dim: #131313;
-  --color-surface-bright: #3a3939;
-  --color-surface-container-lowest: #0e0e0e;
-  --color-surface-container-low: #1c1b1b;
-  --color-surface-container: #201f1f;
-  --color-surface-container-high: #2a2a2a;
-  --color-surface-container-highest: #353534;
-  --color-surface-variant: #353534;
-  --color-on-surface: #e5e2e1;
-  --color-on-surface-variant: #c4c7c8;
-  --color-inverse-surface: #e5e2e1;
-  --color-inverse-on-surface: #313030;
-  --color-outline: #8e9192;
-  --color-outline-variant: #444748;
-  --color-surface-tint: #c6c6c7;
-  --color-primary: #ffffff;
-  --color-on-primary: #2f3131;
-  --color-primary-container: #e2e2e2;
-  --color-on-primary-container: #636565;
-  --color-inverse-primary: #5d5f5f;
-  --color-secondary: #4ae176;
-  --color-on-secondary: #003915;
-  --color-secondary-container: #00b954;
-  --color-on-secondary-container: #004119;
-  --color-tertiary: #ffffff;
-  --color-on-tertiary: #2f3038;
-  --color-tertiary-container: #e3e1ec;
-  --color-on-tertiary-container: #63646c;
-  --color-error: #ffb4ab;
-  --color-on-error: #690005;
-  --color-error-container: #93000a;
-  --color-on-error-container: #ffdad6;
-  --color-primary-fixed: #e2e2e2;
-  --color-primary-fixed-dim: #c6c6c7;
-  --color-on-primary-fixed: #1a1c1c;
-  --color-on-primary-fixed-variant: #454747;
-  --color-secondary-fixed: #6bff8f;
-  --color-secondary-fixed-dim: #4ae176;
-  --color-on-secondary-fixed: #002109;
-  --color-on-secondary-fixed-variant: #005321;
-  --color-tertiary-fixed: #e3e1ec;
-  --color-tertiary-fixed-dim: #c6c5cf;
-  --color-on-tertiary-fixed: #1a1b22;
-  --color-on-tertiary-fixed-variant: #46464e;
-  --color-background: #131313;
-  --color-on-background: #e5e2e1;
-
   --font-display-hero: "Space Grotesk", sans-serif;
   --font-display-hero-mobile: "Space Grotesk", sans-serif;
   --font-headline-lg: "Space Grotesk", sans-serif;
@@ -157,4 +266,21 @@
   direction: ltr;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
+}
+
+/* Glow that stays visible in both themes. */
+.glow-primary {
+  box-shadow: var(--glow-primary);
+}
+
+/* Canvas instruments read these at draw time. */
+.viz {
+  --viz-surface: var(--c-surface);
+  --viz-accent: var(--c-secondary);
+}
+
+/* Theme swap should not animate every colour on the page. */
+body {
+  background-color: var(--c-surface);
+  color: var(--c-on-surface);
 }

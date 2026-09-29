@@ -2,22 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useLang } from "./lang";
+import { useLang, useT } from "./lang";
+import { useTheme } from "./theme";
 import { OWNER, APP } from "@/content/site";
 
-const NAV = [
-  { href: "/", label: "Home" },
-  { href: "/apps", label: "Apps" },
-  { href: "/lab", label: "Lab" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-];
+const NAV = [["/", "home"], ["/apps", "apps"], ["/lab", "lab"], ["/about", "about"], ["/blog", "blog"]];
 
 export default function Header() {
   const pathname = usePathname();
   const { lang, setLang } = useLang();
-  const [dark, setDark] = useState(true);
+  const t = useT();
+  const { theme, toggle } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl border-b border-surface-variant/40">
@@ -35,7 +30,7 @@ export default function Header() {
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-space-lg">
-            {NAV.map(({ href, label }) => {
+            {NAV.map(([href, key]) => {
               const active = pathname === href;
               return (
                 <Link
@@ -48,7 +43,7 @@ export default function Header() {
                       : "font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-on-surface transition-colors py-1"
                   }
                 >
-                  {label}
+                  {t.nav[key]}
                 </Link>
               );
             })}
@@ -74,19 +69,19 @@ export default function Header() {
           </div>
           <button
             type="button"
-            aria-label="Toggle Theme"
-            onClick={() => setDark((d) => !d)}
+            aria-label={theme === "dark" ? t.header.toLight : t.header.toDark}
+            onClick={toggle}
             className="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all"
           >
             <span className="material-symbols-outlined text-[18px]">
-              {dark ? "dark_mode" : "light_mode"}
+              {theme === "dark" ? "dark_mode" : "light_mode"}
             </span>
           </button>
           <Link
             href="/about"
-            className="hidden sm:inline-flex items-center justify-center px-space-md py-1.5 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all shadow-[0_0_12px_rgba(255,255,255,0.15)]"
+            className="hidden sm:inline-flex items-center justify-center px-space-md py-1.5 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all glow-primary"
           >
-            Contact
+            {t.header.contact}
           </Link>
           <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
             <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>

@@ -14,13 +14,35 @@ npm run build   # bản production
 
 ## Sửa nội dung
 
-Toàn bộ chữ về chủ sở hữu và ứng dụng nằm ở **`content/site.js`** — sửa một chỗ, cả 5 trang đổi theo.
+| File | Chứa gì |
+|------|---------|
+| `content/i18n.js` | **Toàn bộ câu chữ**, cả `vi` và `en`. Sửa một chỗ, cả 5 trang đổi theo. |
+| `content/site.js` | Cấu hình không phụ thuộc ngôn ngữ: tên riêng, email, đường dẫn ảnh, stack. |
 
-## Ảnh demo
+Hai từ điển `vi` và `en` phải luôn cùng cấu trúc (cùng khoá, mảng cùng độ dài).
 
-Copy ảnh chụp màn hình điện thoại vào `public/screenshots/` với tên `01.png`, `02.png`, `03.png`.
-Không cần sửa code. Khi thiếu file, khung điện thoại hiện ô gợi ý thay vì ảnh vỡ.
-Thêm ảnh thứ 4 trở đi: thêm một dòng vào mảng `SCREENSHOTS` trong `content/site.js`.
+## Giao diện sáng / tối
+
+Nút trên header chuyển sáng ↔ tối và ghi nhớ trong `localStorage`. Lần đầu vào,
+trang theo thiết lập hệ thống. Bảng màu tối lấy nguyên từ `docs/`; bảng sáng nằm
+ở `:root` trong `app/globals.css`.
+
+## Ngôn ngữ
+
+Nút `VI` / `EN` trên header, lựa chọn được ghi nhớ trong `localStorage`.
+
+## Ảnh
+
+| Thư mục | Dùng cho |
+|---------|----------|
+| `public/screenshots/` | Ảnh chụp màn hình điện thoại (`01.png`, `02.png`, `03.png`) |
+| `public/images/lab/` | Ảnh lớn đầu trang `/lab` |
+| `public/images/about/` | Ảnh lớn đầu trang `/about` |
+| `public/images/blog/` | Ảnh bài nổi bật trang `/blog` |
+
+Cứ copy file vào đúng đường dẫn — không cần sửa code. Khi thiếu file, chỗ đó hiện
+ô gạch đứt ghi rõ đường dẫn cần copy vào, thay vì ảnh vỡ. Chi tiết ở README trong
+từng thư mục.
 
 ## Trang
 

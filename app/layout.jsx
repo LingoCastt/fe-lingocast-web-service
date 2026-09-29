@@ -2,17 +2,20 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LangProvider } from "@/components/lang";
+import { ThemeProvider, THEME_INIT_SCRIPT } from "@/components/theme";
 import { OWNER, APP } from "@/content/site";
+import { vi } from "@/content/i18n";
 
 export const metadata = {
   title: `${OWNER.name} — ${APP.name}`,
-  description: OWNER.tagline,
+  description: vi.footer.tagline,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi" className="dark">
+    <html lang="vi" className="dark" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -25,13 +28,15 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background font-body-md text-body-md text-on-surface antialiased selection:bg-secondary selection:text-on-secondary">
-        <LangProvider>
+        <ThemeProvider>
+          <LangProvider>
           <Header />
           <main className="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]">
             <div className="flex flex-col w-full">{children}</div>
           </main>
           <Footer />
-        </LangProvider>
+          </LangProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

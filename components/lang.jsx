@@ -1,18 +1,46 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { DICTS, LANGS } from "@/content/i18n";
 
-const LangContext = createContext({ lang: "en", setLang: () => {} });
+const LangContext = createContext({ lang: "vi", setLang: () => {}, t: DICTS.vi });
 
 export function LangProvider({ children }) {
-  const [lang, setLang] = useState("en");
-  return <LangContext.Provider value={{ lang, setLang }}>{children}</LangContext.Provider>;
+  const [lang, setLangState] = useState("vi");
+
+  // Restore the previous choice after hydration, so server and client agree
+  // on the first render.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lang");
+      if (saved && LANGS.includes(saved)) setLangState(saved);
+    } catch {
+      // private mode — fall back to the default
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const setLang = (next) => {
+    if (!LANGS.includes(next)) return;
+    setLangState(next);
+    try {
+      localStorage.setItem("lang", next);
+    } catch {
+      // the choice just won't persist
+    }
+  };
+
+  return (
+    <LangContext.Provider value={{ lang, setLang, t: DICTS[lang] }}>
+      {children}
+    </LangContext.Provider>
+  );
 }
 
 export const useLang = () => useContext(LangContext);
 
-/** Pick the active-language string out of a { en, vi } pair. */
-export function useT(dict) {
-  const { lang } = useLang();
-  return (key) => dict[lang]?.[key] ?? dict.en[key];
-}
+/** Shorthand: const t = useT(); then t.home.heroTitle */
+export const useT = () => useContext(LangContext).t;

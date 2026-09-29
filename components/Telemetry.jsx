@@ -2,15 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useT } from "./lang";
 
-const PARAMS = [
-  ["WPM", "wpm", false],
-  ["LUFS", "lufs", false],
-  ["ALIGN (ms)", "align", true],
-  ["CONF (%)", "conf", false],
-  ["PITCH (Hz)", "pitch", false],
-  ["LOOKUP (ms)", "lookup", false],
-];
+const KEYS = ["wpm", "lufs", "align", "conf", "pitch", "lookup"];
+const ACCENT = 2;
 
 /** Demo stream for the speech-alignment readout. Runs entirely in the browser. */
 function simulate(now) {
@@ -24,7 +19,8 @@ function simulate(now) {
   };
 }
 
-export default function Telemetry({ label = "SPEECH_ALIGNMENT // BUS_LIVE" }) {
+export default function Telemetry() {
+  const t = useT();
   const [values, setValues] = useState(() => simulate(0));
 
   useEffect(() => {
@@ -38,37 +34,37 @@ export default function Telemetry({ label = "SPEECH_ALIGNMENT // BUS_LIVE" }) {
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-secondary text-[16px]">graphic_eq</span>
           <span className="font-label-caps text-label-caps text-primary tracking-wider uppercase">
-            {label}
+            {t.telemetry.label}
           </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="font-code-param text-code-param text-secondary flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-            Luồng mô phỏng: 60Hz
+            {t.telemetry.stream}
           </span>
           <Link
             href="/lab"
             className="px-2.5 py-1 rounded bg-surface-container-highest text-primary font-code-param text-code-param hover:bg-surface-bright transition-colors"
           >
-            Mở phòng lab
+            {t.telemetry.openLab}
           </Link>
         </div>
       </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center">
-        {PARAMS.map(([tag, key, accent]) => (
+        {t.telemetry.params.map((tag, i) => (
           <div
-            key={key}
+            key={KEYS[i]}
             className="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center"
           >
             <span className="font-code-param text-code-param text-outline">{tag}</span>
             <span
               className={
                 "font-code-telemetry text-code-telemetry font-semibold mt-0.5 " +
-                (accent ? "text-secondary" : "text-primary")
+                (i === ACCENT ? "text-secondary" : "text-primary")
               }
             >
-              {values[key]}
+              {values[KEYS[i]]}
             </span>
           </div>
         ))}

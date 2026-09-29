@@ -27,6 +27,9 @@ export default function Spectrogram() {
       ctx.clearRect(0, 0, width, height);
       const barWidth = width / BAR_COUNT;
       const time = Date.now() / 300;
+      const css = getComputedStyle(canvas);
+      const accent = css.getPropertyValue("--viz-accent").trim() || "#4ae176";
+      const bar = css.getPropertyValue("--viz-bar").trim() || "rgba(255,255,255,0.22)";
       for (let i = 0; i < BAR_COUNT; i++) {
         const harmonic =
           Math.sin(time + i * 0.28) * 0.4 + Math.cos(time * 0.8 + i * 0.12) * 0.3;
@@ -36,7 +39,7 @@ export default function Spectrogram() {
         );
         const barHeight = bars[i] * (height - 30);
         // highlight the primary resonant peak
-        ctx.fillStyle = i >= 18 && i <= 22 ? "#4ae176" : "rgba(255, 255, 255, 0.22)";
+        ctx.fillStyle = i >= 18 && i <= 22 ? accent : bar;
         ctx.fillRect(i * barWidth + 1, height - barHeight, barWidth - 2, barHeight);
       }
       raf = requestAnimationFrame(draw);
@@ -49,5 +52,5 @@ export default function Spectrogram() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="w-full h-full block" />;
+  return <canvas ref={canvasRef} className="viz w-full h-full block" />;
 }

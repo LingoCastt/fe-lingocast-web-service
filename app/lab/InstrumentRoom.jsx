@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useT } from "@/components/lang";
 
 const MAX_ROWS = 70;
 const BINS = 64;
@@ -17,10 +18,11 @@ function simulatedFrequencies(t) {
 }
 
 export default function InstrumentRoom() {
+  const t = useT();
   const canvasRef = useRef(null);
   const audioRef = useRef({ ctx: null, analyser: null, data: null, active: false });
   const [micOn, setMicOn] = useState(false);
-  const [micLabel, setMicLabel] = useState("Bật micro");
+  const [micState, setMicState] = useState("idle");
 
   const [spectral, setSpectral] = useState({
     peak: "1,024.4 Hz",
@@ -61,7 +63,9 @@ export default function InstrumentRoom() {
       history.unshift(slice);
       if (history.length > MAX_ROWS) history.pop();
 
-      ctx.fillStyle = "#131313";
+      const surface =
+        getComputedStyle(canvas).getPropertyValue("--viz-surface").trim() || "#131313";
+      ctx.fillStyle = surface;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       const rowHeight = canvas.height / MAX_ROWS;
       for (let r = 0; r < history.length; r++) {
@@ -111,7 +115,7 @@ export default function InstrumentRoom() {
     audioRef.current.ctx?.close();
     audioRef.current = { ctx: null, analyser: null, data: null, active: false };
     setMicOn(false);
-    setMicLabel("Bật micro");
+    setMicState("idle");
   }
 
   async function toggleMic() {
@@ -129,10 +133,10 @@ export default function InstrumentRoom() {
         active: true,
       };
       setMicOn(true);
-      setMicLabel("Tắt micro");
+      setMicState("on");
     } catch {
       // Mic denied or unavailable — the simulation keeps the instrument alive.
-      setMicLabel("Không truy cập được micro");
+      setMicState("fail");
     }
   }
 
@@ -145,15 +149,14 @@ export default function InstrumentRoom() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-secondary" />
               <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
-                THIẾT BỊ 01 // SÓNG ÂM
+                {t.lab.i1Label}
               </span>
             </div>
             <h2 className="font-headline-md text-headline-md font-bold text-primary">
-              Phổ giọng nói theo thời gian
+              {t.lab.i1Title}
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              FFT 2D cuộn theo thời gian — đúng biểu đồ LingoCast dùng để dò ranh giới câu
-              trong podcast.
+              {t.lab.i1Desc}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-space-sm">
@@ -166,20 +169,20 @@ export default function InstrumentRoom() {
               className="px-4 py-1.5 rounded-full bg-surface-container-high text-primary hover:bg-surface-container-highest transition-all font-code-telemetry text-code-telemetry flex items-center gap-1.5"
             >
               <span className="material-symbols-outlined text-[16px] text-secondary">insights</span>
-              <span>Dùng tín hiệu mẫu</span>
+              <span>{t.lab.simulate}</span>
             </button>
             <button
               type="button"
               onClick={toggleMic}
               className={
-                "px-5 py-1.5 rounded-full font-code-telemetry text-code-telemetry font-semibold transition-all shadow-[0_0_12px_rgba(255,255,255,0.2)] flex items-center gap-2 " +
+                "px-5 py-1.5 rounded-full font-code-telemetry text-code-telemetry font-semibold transition-all glow-primary flex items-center gap-2 " +
                 (micOn
                   ? "bg-secondary text-on-secondary"
                   : "bg-primary text-on-primary hover:bg-primary-fixed-dim")
               }
             >
               <span className="material-symbols-outlined text-[18px]">mic</span>
-              <span>{micLabel}</span>
+              <span>{micState === "on" ? t.lab.micStop : micState === "fail" ? t.lab.micFail : t.lab.micStart}</span>
             </button>
           </div>
         </div>
@@ -192,7 +195,7 @@ export default function InstrumentRoom() {
           </div>
 
           <div className="relative h-64 md:h-80 w-full overflow-hidden rounded bg-surface">
-            <canvas ref={canvasRef} className="w-full h-full block" />
+            <canvas ref={canvasRef} className="viz w-full h-full block" />
             <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3">
               <div className="flex justify-between items-center text-on-surface-variant/40 font-code-param text-code-param">
                 <span>dBFS: -0.0</span>
@@ -211,10 +214,10 @@ export default function InstrumentRoom() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
             {[
-              ["TẦN SỐ ĐỈNH", spectral.peak, false],
-              ["MỨC ÂM (LAEQ)", spectral.laeq, true],
-              ["MÉO HÀI (THD)", spectral.thd, false],
-              ["LỆCH PHA", spectral.phase, false],
+              [t.lab.spectralLabels[0], spectral.peak, false],
+              [t.lab.spectralLabels[1], spectral.laeq, true],
+              [t.lab.spectralLabels[2], spectral.thd, false],
+              [t.lab.spectralLabels[3], spectral.phase, false],
             ].map(([label, value, accent]) => (
               <div key={label} className="p-2 rounded bg-surface-container flex flex-col">
                 <span className="font-code-param text-code-param text-on-surface-variant">
@@ -241,24 +244,23 @@ export default function InstrumentRoom() {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="font-label-caps text-label-caps text-on-surface-variant uppercase">
-                  THIẾT BỊ 02 // MỨC ÂM
+                  {t.lab.i2Label}
                 </span>
               </div>
-              <span className="font-code-param text-code-param text-secondary">CỬA SỔ 10 GIÂY</span>
+              <span className="font-code-param text-code-param text-secondary">{t.lab.i2Meta}</span>
             </div>
             <h2 className="font-headline-md text-headline-md font-bold text-primary">
-              Đường bao mức âm
+              {t.lab.i2Title}
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Đường bao năng lượng dùng để tách khoảng lặng giữa các câu trước khi căn
-              transcript.
+              {t.lab.i2Desc}
             </p>
           </div>
 
           <div className="relative w-full h-48 rounded-lg bg-surface-container-lowest p-space-sm flex flex-col justify-between overflow-hidden shadow-inner">
             <div className="flex justify-between items-center text-on-surface-variant font-code-param text-code-param">
-              <span>ĐƯỜNG BAO (10s)</span>
-              <span className="text-secondary font-bold">NGƯỠNG: -42 dB</span>
+              <span>{t.lab.envelope}</span>
+              <span className="text-secondary font-bold">{t.lab.threshold}</span>
             </div>
             <svg
               className="w-full h-28 text-secondary overflow-visible"
@@ -287,15 +289,15 @@ export default function InstrumentRoom() {
             <div className="flex justify-between items-center text-on-surface-variant font-code-param text-code-param">
               <span>-10.0s</span>
               <span>-5.0s</span>
-              <span>HIỆN TẠI</span>
+              <span>{t.lab.now}</span>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-space-sm mt-space-md">
             {[
-              ["MỨC ÂM RMS", baro.pres, false],
-              ["NỀN NHIỄU", baro.alt, false],
-              ["SỐ CÂU DÒ ĐƯỢC", "48 câu", true],
+              [t.lab.i2Params[0], baro.pres, false],
+              [t.lab.i2Params[1], baro.alt, false],
+              [t.lab.i2Params[2], t.lab.sentencesFound, true],
             ].map(([label, value, accent]) => (
               <div key={label} className="p-3 rounded-lg bg-surface-container flex flex-col">
                 <span className="font-code-param text-code-param text-on-surface-variant">
@@ -319,17 +321,16 @@ export default function InstrumentRoom() {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="font-label-caps text-label-caps text-on-surface-variant uppercase">
-                  THIẾT BỊ 03 // FORMANT
+                  {t.lab.i3Label}
                 </span>
               </div>
-              <span className="font-code-param text-code-param text-secondary">VOWEL SPACE</span>
+              <span className="font-code-param text-code-param text-secondary">{t.lab.i3Meta}</span>
             </div>
             <h2 className="font-headline-md text-headline-md font-bold text-primary">
-              Phân tích formant
+              {t.lab.i3Title}
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Vị trí formant F1/F2 cho biết người nói đang phát âm nguyên âm nào — cơ sở của phần
-              luyện phát âm.
+              {t.lab.i3Desc}
             </p>
           </div>
 
@@ -362,18 +363,18 @@ export default function InstrumentRoom() {
               </g>
             </svg>
             <div className="absolute bottom-2 left-3 font-code-param text-code-param text-on-surface-variant">
-              SAI SỐ: <span className="text-secondary">±12 Hz</span>
+              {t.lab.drift} <span className="text-secondary">±12 Hz</span>
             </div>
             <div className="absolute bottom-2 right-3 font-code-param text-code-param text-on-surface-variant">
-              VAD: SPEECH
+              {t.lab.vad}
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-space-sm mt-space-md">
             {[
-              ["F0 PITCH", imu.roll, false],
-              ["F1 FORMANT", imu.pitch, false],
-              ["F2 FORMANT", imu.yaw, true],
+              [t.lab.i3Params[0], imu.roll, false],
+              [t.lab.i3Params[1], imu.pitch, false],
+              [t.lab.i3Params[2], imu.yaw, true],
             ].map(([label, value, accent]) => (
               <div key={label} className="p-3 rounded-lg bg-surface-container flex flex-col">
                 <span className="font-code-param text-code-param text-on-surface-variant">
