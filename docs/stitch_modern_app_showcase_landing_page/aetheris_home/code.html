@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface": "#e5e2e1", "on-error": "#690005", "secondary-fixed": "#6bff8f", "surface-container": "#201f1f", "primary-container": "#e2e2e2", "primary": "#ffffff", "on-error-container": "#ffdad6", "on-primary-fixed": "#1a1c1c", "on-surface-variant": "#c4c7c8", "surface-tint": "#c6c6c7", "outline-variant": "#444748", "error": "#ffb4ab", "on-secondary": "#003915", "surface-container-low": "#1c1b1b", "tertiary-fixed": "#e3e1ec", "inverse-primary": "#5d5f5f", "surface-dim": "#131313", "on-tertiary-fixed-variant": "#46464e", "surface-variant": "#353534", "surface-container-lowest": "#0e0e0e", "on-secondary-fixed-variant": "#005321", "surface": "#131313", "secondary": "#4ae176", "on-tertiary": "#2f3038", "inverse-surface": "#e5e2e1", "on-primary-fixed-variant": "#454747", "secondary-container": "#00b954", "tertiary-container": "#e3e1ec", "on-primary": "#2f3131", "inverse-on-surface": "#313030", "primary-fixed": "#e2e2e2", "on-tertiary-container": "#63646c", "surface-container-highest": "#353534", "surface-container-high": "#2a2a2a", "on-tertiary-fixed": "#1a1b22", "on-secondary-fixed": "#002109", "surface-bright": "#3a3939", "secondary-fixed-dim": "#4ae176", "tertiary": "#ffffff", "primary-fixed-dim": "#c6c6c7", "background": "#131313", "on-primary-container": "#636565", "outline": "#8e9192", "on-secondary-container": "#004119", "error-container": "#93000a", "on-background": "#e5e2e1", "tertiary-fixed-dim": "#c6c5cf" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "space-xs": "0.25rem", "margin": "3rem", "space-sm": "0.5rem", "space-xl": "2.5rem" }, "fontFamily": { "code-telemetry": [ "JetBrains Mono" ], "headline-md": [ "Space Grotesk" ], "body-md": [ "Inter" ], "code-param": [ "JetBrains Mono" ], "display-hero-mobile": [ "Space Grotesk" ], "label-caps": [ "JetBrains Mono" ], "body-sm": [ "Inter" ], "display-hero": [ "Space Grotesk" ], "headline-lg": [ "Space Grotesk" ], "body-lg": [ "Inter" ], "headline-lg-mobile": [ "Space Grotesk" ] }, "fontSize": { "code-telemetry": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" } ], "headline-md": [ "24px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "code-param": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "display-hero-mobile": [ "36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-caps": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.14em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "display-hero": [ "64px", { "lineHeight": "68px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "headline-lg": [ "40px", { "lineHeight": "46px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "body-lg": [ "17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-lg-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary selection:text-on-secondary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl border-b border-surface-variant/40"><div class="h-16 max-w-[1280px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-gutter"><a class="flex items-center gap-space-sm group focus:outline-none" data-path="home" href="#"><span class="flex items-center justify-center w-8 h-8 rounded bg-surface-container-high border border-outline-variant/60 font-code-param text-code-param text-primary font-bold tracking-widest group-hover:border-secondary transition-colors">AE</span><span class="font-headline-md text-headline-md font-semibold tracking-tight text-primary">AETHERIS</span><span class="inline-flex items-center px-space-xs py-0.5 rounded text-code-param font-code-param bg-surface-container-high text-secondary border border-secondary/20">LAB</span></a><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b-2 border-secondary"><a aria-current="page" class="transition-colors py-1 text-primary font-semibold border-b-2 border-secondary" data-path="home" href="#">Home</a><a class="font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="apps" href="#">Apps</a><a class="font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="lab" href="#">Lab</a><a class="font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="about" href="#">About</a><a class="font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="blog" href="#">Blog</a></nav></div><div class="flex items-center gap-space-md"><div class="flex items-center p-0.5 rounded-full bg-surface-container-low border border-outline-variant/40"><button class="px-2 py-0.5 rounded-full font-code-param text-code-param font-semibold bg-surface-container-highest text-primary transition-all" type="button">EN</button><button class="px-2 py-0.5 rounded-full font-code-param text-code-param text-on-surface-variant hover:text-on-surface transition-all" type="button">VI</button></div><button aria-label="Toggle Theme" class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" type="button"><span class="material-symbols-outlined text-[18px]">dark_mode</span></button><a class="hidden sm:inline-flex items-center justify-center px-space-md py-1.5 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all shadow-[0_0_12px_rgba(255,255,255,0.15)]" data-path="contact" href="#">Contact</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- Top Global Grid Texture & Hero Region -->
+<section class="relative w-full overflow-hidden px-margin-mobile lg:px-margin pt-space-lg lg:pt-space-xl pb-space-xl">
+<!-- Atmospheric Ambient Glows -->
+<div class="absolute top-12 left-1/4 w-96 h-96 rounded-full bg-secondary/5 blur-[120px] pointer-events-none -z-10"></div>
+<div class="absolute top-36 right-10 w-80 h-80 rounded-full bg-primary/5 blur-[140px] pointer-events-none -z-10"></div>
+<div class="max-w-[1280px] mx-auto">
+<!-- Hero Top Metadata Badges -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-lg">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-secondary font-code-param text-code-param">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+<span class="tracking-widest uppercase" data-i18n="badge-top">• ON-DEVICE PHYSICS • 3 PEOPLE • ZERO ADS</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-code-param text-code-param">
+<span class="material-symbols-outlined text-[14px] text-secondary">memory</span>
+<span>SILICON_LEVEL_CALCULATIONS // V2.8</span>
+</div>
+</div>
+<!-- Main Hero 2-Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Left Hero Copy & Primary Action Controls -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<h1 class="font-display-hero text-display-hero tracking-tight text-primary text-balance" data-i18n="hero-title">
+            Your phone is a lab. We ship the instruments.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl text-balance" data-i18n="hero-desc">
+            Navigation when GPS dies. Sound that never repeats. A pocket physics lab. Acoustic diagnostics. All computed on silicon — no cloud, no tracking, no VC pitch deck.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-on-primary font-code-telemetry text-code-telemetry font-medium hover:bg-primary-fixed-dim transition-all shadow-[0_0_24px_rgba(255,255,255,0.2)] group" href="#apps">
+<span data-i18n="cta-primary">See the instruments</span>
+<span class="material-symbols-outlined ml-2 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-surface-container-high text-primary font-code-telemetry text-code-telemetry font-medium hover:bg-surface-container-highest transition-all group" href="#team">
+<span data-i18n="cta-secondary">Meet my team</span>
+<span class="material-symbols-outlined ml-2 text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">east</span>
+</a>
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant font-code-param text-code-param">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-primary font-semibold">100%</span>
+<span data-i18n="stat-offline">Air-gapped</span>
+</div>
+</div>
+<!-- Live Telemetry Sensor Box -->
+<div class="mt-space-md p-space-md rounded-xl bg-surface-container-low shadow-2xl relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">sensors</span>
+<span class="font-label-caps text-label-caps text-primary tracking-wider uppercase">CORE_TELEMETRY // BUS_LIVE</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-code-param text-code-param text-secondary flex items-center gap-1" id="runtime-status">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                  Running local loop: 60Hz
+                </span>
+<button class="px-2.5 py-1 rounded bg-surface-container-highest text-primary font-code-param text-code-param hover:bg-surface-bright transition-colors" id="toggle-sensor-stream">
+                  Enable live sensors
+                </button>
+</div>
+</div>
+<!-- Parameters Grid -->
+<div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center">
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">AX (m/s²)</span>
+<span class="font-code-telemetry text-code-telemetry text-primary font-semibold mt-0.5" id="tel-ax">+0.042</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">AY (m/s²)</span>
+<span class="font-code-telemetry text-code-telemetry text-primary font-semibold mt-0.5" id="tel-ay">-0.981</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">AZ (m/s²)</span>
+<span class="font-code-telemetry text-code-telemetry text-primary font-semibold mt-0.5" id="tel-az">+9.807</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">HDG (deg)</span>
+<span class="font-code-telemetry text-code-telemetry text-secondary font-semibold mt-0.5" id="tel-hdg">142.8°</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">PRES (hPa)</span>
+<span class="font-code-telemetry text-code-telemetry text-primary font-semibold mt-0.5" id="tel-pres">1013.2</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest flex flex-col items-center justify-center">
+<span class="font-code-param text-code-param text-outline">LAEQ (dB)</span>
+<span class="font-code-telemetry text-code-telemetry text-primary font-semibold mt-0.5" id="tel-laeq">38.4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Interactive Radar Orbital Avionics Visual -->
+<div class="lg:col-span-5 flex items-center justify-center relative">
+<div class="relative w-full max-w-[420px] aspect-square rounded-2xl bg-surface-container-lowest p-6 shadow-2xl flex items-center justify-center">
+<!-- Concentric Reticle Rings -->
+<div class="absolute inset-8 rounded-full bg-surface-container-low/40"></div>
+<div class="absolute inset-16 rounded-full bg-surface-container/60"></div>
+<div class="absolute inset-28 rounded-full bg-surface-container-high/80"></div>
+<!-- Polar Grid Crosshairs -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-full h-[1px] bg-outline-variant/30"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="h-full w-[1px] bg-outline-variant/30"></div>
+</div>
+<!-- Rotating Radar Sweep Cone -->
+<div class="absolute inset-8 rounded-full overflow-hidden pointer-events-none animate-[spin_6s_linear_infinite]">
+<div class="w-1/2 h-1/2 origin-bottom-right bg-gradient-to-tl from-secondary/35 via-secondary/10 to-transparent"></div>
+</div>
+<!-- Studio Core Nucleus -->
+<div class="relative z-10 w-20 h-20 rounded-full bg-surface-bright flex flex-col items-center justify-center text-center shadow-lg">
+<span class="material-symbols-outlined text-secondary text-[26px]">all_inclusive</span>
+<span class="font-code-param text-[9px] tracking-widest text-primary font-bold">CORE</span>
+</div>
+<!-- Orbiting App Instruments -->
+<!-- App 1: Stashio (Top North) -->
+<div class="absolute top-6 left-1/2 -translate-x-1/2 z-20 group cursor-pointer">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[14px] text-secondary">explore</span>
+<span class="font-code-param text-code-param font-bold">STASHIO</span>
+</div>
+</div>
+<!-- App 2: Wheria (Right East) -->
+<div class="absolute right-4 top-1/2 -translate-y-1/2 z-20 group cursor-pointer">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[14px] text-primary">surround_sound</span>
+<span class="font-code-param text-code-param font-bold">WHERIA</span>
+</div>
+</div>
+<!-- App 3: Estua (Bottom South) -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 group cursor-pointer">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[14px] text-secondary">science</span>
+<span class="font-code-param text-code-param font-bold">ESTUA</span>
+</div>
+</div>
+<!-- App 4: Phyzix (Left West) -->
+<div class="absolute left-4 top-1/2 -translate-y-1/2 z-20 group cursor-pointer">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[14px] text-primary">graphic_eq</span>
+<span class="font-code-param text-code-param font-bold">PHYZIX</span>
+</div>
+</div>
+<!-- App 5: Sonarish (North-East Diagonal) -->
+<div class="absolute top-16 right-12 z-20 group cursor-pointer">
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-secondary shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[12px]">radar</span>
+<span class="font-code-param text-[9px] font-bold">SONARISH</span>
+</div>
+</div>
+<!-- Bottom Metric Overlay -->
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between font-code-param text-code-param text-on-surface-variant">
+<span>RADAR_SWEEP: 0.16 HZ</span>
+<span class="text-secondary">ECHO_SYNC_OK</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Metric Ribbon / Laboratory Telemetry Header -->
+<section class="w-full bg-surface-container-lowest py-space-sm px-margin-mobile lg:px-margin">
+<div class="max-w-[1280px] mx-auto flex flex-wrap items-center justify-between gap-space-md font-code-telemetry text-code-telemetry text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-primary font-medium">STUDIO RUNTIME:</span>
+<span>AETHERIS-OS 4.1.2</span>
+</div>
+<div class="flex items-center gap-4">
+<span>MEM: 18.2 MB</span>
+<span class="hidden sm:inline">CYCLE: 0.08ms</span>
+<span class="text-secondary font-semibold">CLOUD_DEPENDENCY: 0.0%</span>
+</div>
+</div>
+</section>
+<!-- App Showcase Teaser Grid -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin" id="apps">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-space-lg">
+<!-- Section Header & Filter Pills -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="font-code-param text-code-param text-secondary uppercase tracking-widest mb-1" data-i18n="instruments-sub">
+            PORTFOLIO // REALITY MEASUREMENT
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight" data-i18n="instruments-title">
+            Five problems. Five apps.
+          </h2>
+</div>
+<!-- Category Pills (Interactive Filter) -->
+<div class="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-surface-container-low" id="category-filter-container">
+<button class="cat-pill px-4 py-1 rounded-full font-code-telemetry text-code-telemetry bg-primary text-on-primary font-semibold transition-all" data-cat="all">All</button>
+<button class="cat-pill px-4 py-1 rounded-full font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-primary transition-all" data-cat="navigation">Navigation</button>
+<button class="cat-pill px-4 py-1 rounded-full font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-primary transition-all" data-cat="health">Health</button>
+<button class="cat-pill px-4 py-1 rounded-full font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-primary transition-all" data-cat="education">Education</button>
+<button class="cat-pill px-4 py-1 rounded-full font-code-telemetry text-code-telemetry text-on-surface-variant hover:text-primary transition-all" data-cat="productivity">Productivity</button>
+</div>
+</div>
+<!-- App Card Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="app-card-grid">
+<!-- App 1: Stashio -->
+<div class="app-card flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group" data-category="navigation">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[26px]">explore</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">iOS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-on-surface-variant">Watch</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Stashio</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Dead-reckoning spatial tracker using phone IMU magnetometer &amp; step frequency when satellite navigation is completely obstructed.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">CoreMotion</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Kalman Filter</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Offline</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-code-param text-code-param text-on-surface-variant">24.1K DL // v3.2.0</span>
+<div class="flex items-center gap-2">
+<a class="px-3 py-1.5 rounded-lg bg-surface-bright hover:bg-primary hover:text-on-primary text-primary font-code-telemetry text-code-telemetry transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>App Store</span>
+</a>
+</div>
+</div>
+</div>
+<!-- App 2: Wheria -->
+<div class="app-card flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group" data-category="health">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[26px]">surround_sound</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">iOS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">Android</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Wheria</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Procedural generative soundscapes mapped mathematically to room reverberation and real-time circadian daylight spectrums.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">AVAudioEngine</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">DSP</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">0ms Latency</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-code-param text-code-param text-on-surface-variant">18.7K DL // v2.1.4</span>
+<div class="flex items-center gap-2">
+<a class="px-3 py-1.5 rounded-lg bg-surface-bright hover:bg-primary hover:text-on-primary text-primary font-code-telemetry text-code-telemetry transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Get App</span>
+</a>
+</div>
+</div>
+</div>
+<!-- App 3: Estua -->
+<div class="app-card flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group" data-category="education">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[26px]">science</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">Web</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">iOS</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Estua</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Pocket mechanics simulator with real-time rigid body dynamics, pendulum dampening, and elastic collisions on bare-metal WebAssembly.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Wasm</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Rust Engine</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">60 FPS</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-code-param text-code-param text-on-surface-variant">42.0K DL // v4.0.1</span>
+<div class="flex items-center gap-2">
+<a class="px-3 py-1.5 rounded-lg bg-surface-bright hover:bg-primary hover:text-on-primary text-primary font-code-telemetry text-code-telemetry transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">open_in_browser</span>
+<span>Launch</span>
+</a>
+</div>
+</div>
+</div>
+<!-- App 4: Phyzix -->
+<div class="app-card flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group" data-category="productivity">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[26px]">graphic_eq</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">iOS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-on-surface-variant">Android</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Phyzix</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Acoustic diagnostic spectrum analyzer. Pinpoints structural motor wear, harmonic imbalances, and bearing vibrations via microphone audio.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">FFT-512</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Vibration FFT</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">AudioKit</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-code-param text-code-param text-on-surface-variant">11.3K DL // v1.8.9</span>
+<div class="flex items-center gap-2">
+<a class="px-3 py-1.5 rounded-lg bg-surface-bright hover:bg-primary hover:text-on-primary text-primary font-code-telemetry text-code-telemetry transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Get App</span>
+</a>
+</div>
+</div>
+</div>
+<!-- App 5: Sonarish -->
+<div class="app-card flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group" data-category="navigation">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[26px]">radar</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">iOS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-code-param bg-surface-container-highest text-primary font-semibold">Watch</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Sonarish</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                Sub-ultrasonic spatial echolocation. Emits high-frequency chirps through the speaker to map physical room boundaries in utter darkness.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Ultrasonic Echo</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">Metal Shaders</span>
+<span class="px-2 py-0.5 rounded text-code-param font-code-param bg-surface-container text-on-surface-variant">LiDAR Blend</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-code-param text-code-param text-on-surface-variant">9.8K DL // v2.0.0</span>
+<div class="flex items-center gap-2">
+<a class="px-3 py-1.5 rounded-lg bg-surface-bright hover:bg-primary hover:text-on-primary text-primary font-code-telemetry text-code-telemetry transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Get App</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Callout Banner: Custom Hardware / Studio Access -->
+<div class="flex flex-col justify-between p-space-lg rounded-xl bg-surface-container-highest text-primary shadow-xl">
+<div class="space-y-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">developer_board</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-primary" data-i18n="custom-title">Special Instrument?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="custom-desc">
+              We build specialized sensory compute engines for maritime surveyors, field acoustics engineers, and extreme climate teams.
+            </p>
+</div>
+<div class="pt-space-md">
+<a class="inline-flex items-center gap-2 font-code-telemetry text-code-telemetry text-secondary hover:text-primary transition-colors" href="#">
+<span>Submit engineering spec</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- View All Apps Bottom Bar -->
+<div class="flex items-center justify-center pt-space-sm">
+<a class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-container-low text-primary hover:bg-surface-container font-code-telemetry text-code-telemetry transition-all group" href="#">
+<span data-i18n="view-all-apps">View all apps and technical specs</span>
+<span class="material-symbols-outlined text-[18px] text-secondary group-hover:translate-x-1 transition-transform">east</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Instrument Room Teaser: Frequency Spectrogram & Latency Benchmarks -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface-container-lowest">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Spectrogram Visual Canvas -->
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">LIVE_SPECTROGRAM // FFT_STREAM</span>
+</div>
+<span class="font-code-param text-code-param text-on-surface-variant">SAMPLE_RATE: 48000 Hz</span>
+</div>
+<!-- Canvas Container -->
+<div class="relative w-full h-56 rounded-xl bg-surface-dim overflow-hidden shadow-inner p-3 flex flex-col justify-end">
+<canvas class="w-full h-full block" id="spectrogram-canvas"></canvas>
+<div class="absolute top-3 left-4 flex gap-4 font-code-param text-code-param text-outline">
+<span>20 Hz</span>
+<span>250 Hz</span>
+<span>1 kHz</span>
+<span>4 kHz</span>
+<span>16 kHz</span>
+</div>
+<div class="absolute bottom-2 right-4 font-code-param text-code-param text-secondary">
+            PEAK: 432.09 Hz [-12.4 dBFS]
+          </div>
+</div>
+<p class="font-code-param text-code-param text-on-surface-variant">
+          Rendered live on client graphics thread via Canvas2D raster pipeline. Zero cloud telemetry payload transmission.
+        </p>
+</div>
+<!-- Benchmark Latency Metrics -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div>
+<span class="font-code-param text-code-param text-secondary uppercase tracking-widest" data-i18n="bench-sub">
+            EXECUTION PROFILES
+          </span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight" data-i18n="bench-title">
+            Silicon-First Speed.
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            By rejecting third-party tracking scripts, cloud proxies, and bulky wrappers, our code executes directly in CPU/DSP L1-cache lines.
+          </p>
+</div>
+<!-- Latency Metrics Stack -->
+<div class="flex flex-col gap-space-sm">
+<div class="p-3.5 rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code-telemetry text-code-telemetry text-primary font-medium">FFT-256 Analysis Window</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Accelerate vDSP on Apple Silicon / NEON</span>
+</div>
+<div class="text-right">
+<span class="font-code-telemetry text-code-telemetry text-secondary font-bold">1.9 ms</span>
+<div class="font-code-param text-[9px] text-outline">P99 LATENCY</div>
+</div>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code-telemetry text-code-telemetry text-primary font-medium">Synth Ring-Buffer Render</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Zero-alloc high priority audio thread</span>
+</div>
+<div class="text-right">
+<span class="font-code-telemetry text-code-telemetry text-secondary font-bold">0.01 ms</span>
+<div class="font-code-param text-[9px] text-outline">SUB-MICRO</div>
+</div>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code-telemetry text-code-telemetry text-primary font-medium">IMU Dead-Reckon Integration</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Continuous quaternion integration</span>
+</div>
+<div class="text-right">
+<span class="font-code-telemetry text-code-telemetry text-secondary font-bold">0.01 ms</span>
+<div class="font-code-param text-[9px] text-outline">NOMINAL</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Studio Manifesto / Quote Section -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin" id="team">
+<div class="max-w-[1280px] mx-auto">
+<div class="p-space-lg lg:p-space-xl rounded-2xl bg-surface-container-low shadow-2xl relative overflow-hidden">
+<!-- Faint Monospaced Watermark -->
+<div class="absolute -right-6 -bottom-10 font-code-telemetry text-[120px] font-bold text-surface-container-high/40 select-none pointer-events-none">
+          MANIFESTO
+        </div>
+<div class="relative z-10 max-w-3xl flex flex-col gap-space-md">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-code-param text-code-param text-secondary uppercase tracking-widest">AETHERIS DOCTRINE // ZERO BULLSHIT</span>
+</div>
+<blockquote class="font-headline-lg text-headline-lg text-primary tracking-tight font-medium" data-i18n="manifesto-quote">
+            “We don’t monetize your coordinates. We don’t upload your soundwaves. We believe hardware sensors belong to the human holding the phone.”
+          </blockquote>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center font-code-telemetry text-code-telemetry font-bold text-primary">
+                A3
+              </div>
+<div>
+<div class="font-code-telemetry text-code-telemetry text-primary font-semibold">Minh, Alex &amp; Thao</div>
+<div class="font-code-param text-code-param text-on-surface-variant">Core Physics, Systems &amp; Industrial Audio</div>
+</div>
+</div>
+<div class="flex items-center gap-2 font-code-param text-code-param text-on-surface-variant">
+<span>NO TRACKERS</span>
+<span>•</span>
+<span>NO ANALYTICS</span>
+<span>•</span>
+<span class="text-secondary">FOREVER LOCAL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Client Interactive Scripts (Sensors, Spectrogram, i18n, Filters) -->
+<script>
+    (function() {
+      // 1. Live Telemetry Sim & Device Sensors
+      let isLiveSim = true;
+      const elAx = document.getElementById('tel-ax');
+      const elAy = document.getElementById('tel-ay');
+      const elAz = document.getElementById('tel-az');
+      const elHdg = document.getElementById('tel-hdg');
+      const elPres = document.getElementById('tel-pres');
+      const elLaeq = document.getElementById('tel-laeq');
+      const toggleBtn = document.getElementById('toggle-sensor-stream');
+      const runtimeStatus = document.getElementById('runtime-status');
+
+      function updateTelemetry() {
+        if (!isLiveSim) return;
+        const now = Date.now() / 1000;
+        const ax = (Math.sin(now * 2.1) * 0.42).toFixed(3);
+        const ay = (-0.98 + Math.cos(now * 1.7) * 0.05).toFixed(3);
+        const az = (9.80 + Math.sin(now * 0.9) * 0.02).toFixed(3);
+        const hdg = ((142.8 + Math.sin(now * 0.5) * 6.2 + 360) % 360).toFixed(1);
+        const pres = (1013.2 + Math.sin(now * 0.2) * 0.4).toFixed(1);
+        const laeq = (38.4 + Math.sin(now * 3.4) * 4.1).toFixed(1);
+
+        if (elAx) elAx.textContent = (ax >= 0 ? '+' : '') + ax;
+        if (elAy) elAy.textContent = (ay >= 0 ? '+' : '') + ay;
+        if (elAz) elAz.textContent = (az >= 0 ? '+' : '') + az;
+        if (elHdg) elHdg.textContent = hdg + '°';
+        if (elPres) elPres.textContent = pres;
+        if (elLaeq) elLaeq.textContent = laeq;
+      }
+
+      const telemetryInterval = setInterval(updateTelemetry, 50);
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+            DeviceMotionEvent.requestPermission().then(function(permissionState) {
+              if (permissionState === 'granted') {
+                bindHardwareSensors();
+              }
+            }).catch(console.error);
+          } else {
+            bindHardwareSensors();
+          }
+        });
+      }
+
+      function bindHardwareSensors() {
+        window.addEventListener('devicemotion', function(event) {
+          if (event.accelerationIncludingGravity) {
+            isLiveSim = false;
+            if (elAx) elAx.textContent = (event.accelerationIncludingGravity.x || 0).toFixed(3);
+            if (elAy) elAy.textContent = (event.accelerationIncludingGravity.y || 0).toFixed(3);
+            if (elAz) elAz.textContent = (event.accelerationIncludingGravity.z || 0).toFixed(3);
+            if (runtimeStatus) runtimeStatus.textContent = 'Hardware IMU active: 60Hz';
+          }
+        });
+        window.addEventListener('deviceorientation', function(event) {
+          if (event.alpha && elHdg) {
+            elHdg.textContent = (360 - event.alpha).toFixed(1) + '°';
+          }
+        });
+        if (toggleBtn) {
+          toggleBtn.textContent = 'Sensors Engaged';
+          toggleBtn.classList.add('bg-secondary', 'text-on-secondary');
+        }
+      }
+
+      // 2. Spectrogram Audio Simulation Canvas
+      const canvas = document.getElementById('spectrogram-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+
+        window.addEventListener('resize', function() {
+          if (!canvas) return;
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        });
+
+        const barCount = 48;
+        const bars = new Array(barCount).fill(0.1);
+
+        function drawSpectrogram() {
+          ctx.clearRect(0, 0, width, height);
+          const barWidth = width / barCount;
+          const time = Date.now() / 300;
+
+          for (let i = 0; i < barCount; i++) {
+            const harmonic = Math.sin(time + i * 0.28) * 0.4 + Math.cos(time * 0.8 + i * 0.12) * 0.3;
+            bars[i] = Math.max(0.08, Math.min(0.95, bars[i] * 0.7 + (Math.abs(harmonic) + 0.15) * 0.3));
+
+            const barHeight = bars[i] * (height - 30);
+            const x = i * barWidth;
+            const y = height - barHeight;
+
+            // Highlight primary resonant peak
+            if (i >= 18 && i <= 22) {
+              ctx.fillStyle = '#4ae176';
+            } else {
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+            }
+            ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
+          }
+          requestAnimationFrame(drawSpectrogram);
+        }
+        drawSpectrogram();
+      }
+
+      // 3. Category Filter
+      const catPills = document.querySelectorAll('.cat-pill');
+      const appCards = document.querySelectorAll('.app-card');
+
+      catPills.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const selected = this.getAttribute('data-cat');
+          
+          catPills.forEach(function(p) {
+            p.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+            p.classList.add('text-on-surface-variant');
+          });
+          this.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+          this.classList.remove('text-on-surface-variant');
+
+          appCards.forEach(function(card) {
+            const cardCat = card.getAttribute('data-category');
+            if (selected === 'all' || cardCat === selected) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 4. Multilingual EN / VI Sync
+      const dict = {
+        en: {
+          'badge-top': '• ON-DEVICE PHYSICS • 3 PEOPLE • ZERO ADS',
+          'hero-title': 'Your phone is a lab. We ship the instruments.',
+          'hero-desc': 'Navigation when GPS dies. Sound that never repeats. A pocket physics lab. Acoustic diagnostics. All computed on silicon — no cloud, no tracking, no VC pitch deck.',
+          'cta-primary': 'See the instruments',
+          'cta-secondary': 'Meet my team',
+          'stat-offline': 'Air-gapped',
+          'instruments-sub': 'PORTFOLIO // REALITY MEASUREMENT',
+          'instruments-title': 'Five problems. Five apps.',
+          'custom-title': 'Special Instrument?',
+          'custom-desc': 'We build specialized sensory compute engines for maritime surveyors, field acoustics engineers, and extreme climate teams.',
+          'view-all-apps': 'View all apps and technical specs',
+          'bench-sub': 'EXECUTION PROFILES',
+          'bench-title': 'Silicon-First Speed.',
+          'manifesto-quote': '“We don’t monetize your coordinates. We don’t upload your soundwaves. We believe hardware sensors belong to the human holding the phone.”'
+        },
+        vi: {
+          'badge-top': '• VẬT LÝ TRỰC TIẾP TRÊN THIẾT BỊ • 3 THÀNH VIÊN • KHÔNG QUẢNG CÁO',
+          'hero-title': 'Điện thoại là một phòng thí nghiệm. Chúng tôi tạo ra khí tài.',
+          'hero-desc': 'Định vị khi mất GPS. Âm thanh không bao giờ lặp lại. Phòng thí nghiệm vật lý bỏ túi. Chẩn đoán âm học. Toàn bộ tính toán trên chip — không điện toán đám mây, không theo dõi.',
+          'cta-primary': 'Xem các khí tài',
+          'cta-secondary': 'Gặp gỡ đội ngũ',
+          'stat-offline': 'Cách ly mạng',
+          'instruments-sub': 'DANH MỤC // ĐO ĐẠC THỰC TẠI',
+          'instruments-title': 'Năm vấn đề. Năm ứng dụng.',
+          'custom-title': 'Khí tài chuyên dụng?',
+          'custom-desc': 'Chúng tôi xây dựng các bộ xử lý cảm biến chuyên dụng cho khảo sát hàng hải, kỹ sư âm học thực địa và môi trường khắc nghiệt.',
+          'view-all-apps': 'Xem toàn bộ ứng dụng và thông số kỹ thuật',
+          'bench-sub': 'HỒ SƠ THỰC THI',
+          'bench-title': 'Tốc độ tối đa trên Silicon.',
+          'manifesto-quote': '“Chúng tôi không trục lợi từ toạ độ của bạn. Chúng tôi không tải dữ liệu âm thanh lên mạng. Cảm biến phần cứng thuộc về người đang cầm thiết bị.”'
+        }
+      };
+
+      // Listen to header language button changes if present in app shell
+      const langButtons = document.querySelectorAll('header button');
+      langButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const text = this.textContent.trim().toLowerCase();
+          if (text === 'vi' || text === 'en') {
+            applyLanguage(text);
+          }
+        });
+      });
+
+      function applyLanguage(lang) {
+        if (!dict[lang]) return;
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          const key = el.getAttribute('data-i18n');
+          if (dict[lang][key]) {
+            el.innerHTML = dict[lang][key];
+          }
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-variant/40 mt-space-xl"><div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin py-space-xl flex flex-col gap-space-lg"><div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg border-b border-surface-variant/30 pb-space-lg"><div class="space-y-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md font-semibold text-primary">AETHERIS LAB</span><span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span></div><p class="font-code-telemetry text-code-telemetry text-on-surface-variant max-w-lg">Experimental software laboratory rooted in on-device physics, mathematical exactitude, and high-performance client runtime architecture.</p></div><div class="flex items-center gap-space-md"><a aria-label="Source Code" class="w-9 h-9 rounded flex items-center justify-center bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-outline transition-all" data-path="github" href="#"><span class="material-symbols-outlined text-[20px]">code</span></a><a aria-label="Broadcast Stream" class="w-9 h-9 rounded flex items-center justify-center bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-outline transition-all" data-path="broadcast" href="#"><span class="material-symbols-outlined text-[20px]">cell_tower</span></a><a aria-label="Telemetry Syndication RSS" class="w-9 h-9 rounded flex items-center justify-center bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-outline transition-all" data-path="rss-feed" href="#"><span class="material-symbols-outlined text-[20px]">rss_feed</span></a></div></div><div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md font-code-param text-code-param text-on-surface-variant"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[14px]">terminal</span><span>SYS_STATUS: NOMINAL // ZERO_TOLERANCE_RUNTIME</span></div><div>© 2026 AETHERIS ENGINEERING STUDIO. ALL RIGHTS RESERVED.</div></div></div></footer></body></html>
