@@ -1,23 +1,31 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { forwardRef, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { SCREENSHOTS } from "@/content/site";
 import { useT } from "./lang";
 
+// Fixed so the track's centring padding (calc(50% - CARD_WIDTH/2)) is exact —
+// keep this in sync with the width classes on the card below.
+const CARD_WIDTH = 240;
+
 /** Phone bezel. Renders the shot, or a drop-file hint while the file is absent. */
-function PhoneFrame({ src, title, caption, index, active, onOpen }) {
+const PhoneFrame = forwardRef(function PhoneFrame(
+  { src, title, caption, index, active, onOpen },
+  ref,
+) {
   const [failed, setFailed] = useState(false);
   const t = useT();
 
   return (
     <figure
+      ref={ref}
       data-index={index}
-      className="group flex w-[78vw] max-w-[280px] shrink-0 snap-center flex-col gap-space-sm sm:w-[280px]"
+      className="group flex w-[240px] shrink-0 snap-center flex-col gap-space-sm"
     >
       <div
         className={
-          "relative mx-auto w-full transition-all duration-500 ease-out " +
-          (active ? "scale-100 opacity-100" : "scale-[0.88] opacity-40")
+          "card-scale relative mx-auto w-full transition-[transform,opacity] duration-300 ease-out will-change-transform " +
+          (active ? "scale-100 opacity-100" : "scale-[0.86] opacity-45")
         }
       >
         <div className="relative rounded-[2rem] bg-surface-container-high p-2 shadow-2xl ring-1 ring-outline-variant/40">
@@ -67,7 +75,7 @@ function PhoneFrame({ src, title, caption, index, active, onOpen }) {
 
       <figcaption
         className={
-          "space-y-1 px-1 text-center transition-opacity duration-500 " +
+          "space-y-1 px-1 text-center transition-opacity duration-300 " +
           (active ? "opacity-100" : "opacity-0")
         }
       >
@@ -78,56 +86,102 @@ function PhoneFrame({ src, title, caption, index, active, onOpen }) {
       </figcaption>
     </figure>
   );
-}
+});
 
 export default function ScreenshotGallery() {
   const t = useT();
   const [open, setOpen] = useState(null);
   const [active, setActive] = useState(0);
   const trackRef = useRef(null);
+  const cardRefs = useRef([]);
+  const activeRef = useRef(0);
+  const rafRef = useRef(null);
 
   const shot =
     open === null ? null : { src: SCREENSHOTS[open], caption: t.screenshots[open] };
 
-  const step = (delta) =>
-    setOpen((i) => (i + delta + SCREENSHOTS.length) % SCREENSHOTS.length);
-
-  // Track which card is centred in the scroller, so it can scale up and the
-  // matching dot can light up — the carousel's "current page" state.
-  useEffect(() => {
+  // The single source of truth for "which card is centred": measure real
+  // geometry every animation frame while scrolling, rather than trusting
+  // IntersectionObserver's crossed-threshold callbacks (those can skip the
+  // newly-centred card during a fast swipe and leave `active` stuck).
+  const measure = useCallback(() => {
+    rafRef.current = null;
     const track = trackRef.current;
     if (!track) return;
-    const cards = [...track.children];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(Number(visible.target.dataset.index));
-      },
-      { root: track, threshold: [0.6, 0.9] },
-    );
-    cards.forEach((c) => observer.observe(c));
-    return () => observer.disconnect();
+    const trackRect = track.getBoundingClientRect();
+    const center = trackRect.left + trackRect.width / 2;
+    const halfTrack = trackRect.width / 2 || 1;
+
+    let nearest = 0;
+    let nearestDist = Infinity;
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
+      const scaler = card.querySelector(".card-scale");
+      const r = card.getBoundingClientRect();
+      const dist = Math.abs(r.left + r.width / 2 - center);
+      const norm = Math.min(dist / halfTrack, 1);
+      if (scaler) {
+        scaler.style.transform = `scale(${1 - norm * 0.24})`;
+        scaler.style.opacity = String(1 - norm * 0.55);
+      }
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearest = i;
+      }
+    });
+
+    if (nearest !== activeRef.current) {
+      activeRef.current = nearest;
+      setActive(nearest);
+    }
   }, []);
 
+  const requestMeasure = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(measure);
+  }, [measure]);
+
+  // Layout effect: runs synchronously after DOM layout but before the
+  // browser paints, so the first frame already has card 0 scaled up — no
+  // flash from "unscaled" to "scaled".
+  useLayoutEffect(() => {
+    measure();
+    window.addEventListener("resize", requestMeasure);
+    return () => {
+      window.removeEventListener("resize", requestMeasure);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [measure, requestMeasure]);
+
   const scrollToIndex = useCallback((i) => {
-    const track = trackRef.current;
-    const card = track?.children[i];
-    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    cardRefs.current[i]?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
   }, []);
+
+  const step = (delta) =>
+    setOpen((i) => (i + delta + SCREENSHOTS.length) % SCREENSHOTS.length);
 
   return (
     <>
       <div className="relative">
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-space-lg overflow-x-auto scroll-smooth px-[11vw] py-space-sm sm:px-[calc(50%-140px)]"
-          style={{ scrollbarWidth: "none" }}
+          onScroll={requestMeasure}
+          className="flex snap-x snap-mandatory gap-space-lg overflow-x-auto scroll-smooth py-space-sm"
+          style={{
+            paddingInline: `calc(50% - ${CARD_WIDTH / 2}px)`,
+            scrollbarWidth: "none",
+          }}
         >
           {SCREENSHOTS.map((src, i) => (
             <PhoneFrame
               key={src}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
               src={src}
               title={t.screenshots[i][0]}
               caption={t.screenshots[i][1]}
