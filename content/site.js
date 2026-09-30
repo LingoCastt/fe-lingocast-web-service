@@ -26,6 +26,13 @@ export const SCREENSHOTS = [
   "/screenshots/01.jpg",
   "/screenshots/02.jpg",
   "/screenshots/03.jpg",
+  "/screenshots/04.jpg",
+  "/screenshots/05.jpg",
+  "/screenshots/06.jpg",
+  "/screenshots/07.jpg",
+  "/screenshots/08.jpg",
+  "/screenshots/09.jpg",
+  "/screenshots/10.jpg",
 ];
 
 // Ảnh minh hoạ từng trang — copy file vào public/images/<trang>/
